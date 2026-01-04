@@ -163,6 +163,19 @@ $('#editBtn').click(function(event) {
     })
 });
 
+
+$(document).on('click', '.delete-btn', function(event) {
+    event.preventDefault();
+    $.ajax({
+        url: `${BASE_URL}/delete/${id}`,
+        method: 'DELETE',
+        success: (res) => {
+            alert(res.message)
+            loadStudents()
+        }
+    })
+});
+
 const formVAlidation = ()=>{
     const name = $('#name').val()
     const email = $('#email').val()

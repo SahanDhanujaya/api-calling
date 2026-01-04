@@ -33,7 +33,7 @@ app.get("/getAll", (req, res) => {
 app.put("/update/:id", (req, res) => {
   const { id } = req.params;
   const { name, email, address, phone } = req.body;
-  
+
   console.log(id)
   const sql =
     "UPDATE students SET name=?, email=?, address=?, phone=? WHERE id=?";
@@ -48,10 +48,10 @@ app.put("/update/:id", (req, res) => {
 });
 
 /* ===== DELETE ===== */
-app.delete("/delete/:email", (req, res) => {
-  const { email } = req.params;
+app.delete("/delete/:id", (req, res) => {
+  const { id } = req.params;
 
-  db.query("DELETE FROM students WHERE email=?", [email], (err, result) => {
+  db.query("DELETE FROM students WHERE id=?", [id], (err, result) => {
     if (err) return res.status(500).json({ message: "Delete failed" });
     if (result.affectedRows === 0)
       return res.status(404).json({ message: "Student not found" });
